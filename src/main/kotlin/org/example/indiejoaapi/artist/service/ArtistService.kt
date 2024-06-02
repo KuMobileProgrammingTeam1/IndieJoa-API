@@ -5,6 +5,8 @@ import org.example.indiejoaapi.artist.entity.Artist
 import org.example.indiejoaapi.artist.repository.ArtistRepository
 import org.example.indiejoaapi.common.service.ApiService
 import org.springframework.boot.json.GsonJsonParser
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 
 @Service
@@ -130,5 +132,9 @@ class ArtistService(
             """.trimIndent()
             )
             .build()
+    }
+
+    fun getArtists(page: Int, size: Int): Page<Artist> {
+        return artistRepository.findAll(PageRequest.of(page, size))
     }
 }
