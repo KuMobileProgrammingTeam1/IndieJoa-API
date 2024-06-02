@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1717344202981-1
+      author: ji-inpark
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_artist
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: indie_street_id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: name_en
+                  type: VARCHAR(255)
+              - column:
+                  name: name_jp
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_solo
+                  type: BOOLEAN
+              - column:
+                  name: image_url
+                  type: TEXT
+              - column:
+                  name: youtube_channel_link
+                  type: VARCHAR(255)
+              - column:
+                  name: twitter_link
+                  type: VARCHAR(255)
+            tableName: artist
+
