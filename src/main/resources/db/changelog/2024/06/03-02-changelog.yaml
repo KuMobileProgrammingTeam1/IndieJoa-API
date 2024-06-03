@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1717387054581-2
+      author: ji-inpark
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_live
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: indie_street_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: stage_id
+                  type: BIGINT
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: poster_url
+                  type: TEXT
+              - column:
+                  name: purchase_ticket_link
+                  type: VARCHAR(255)
+              - column:
+                  name: price_info
+                  type: TEXT
+              - column:
+                  name: start_date
+                  type: VARCHAR(255)
+              - column:
+                  name: end_date
+                  type: VARCHAR(255)
+            tableName: live
+  - changeSet:
+      id: 1717387054581-3
+      author: ji-inpark
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_stage
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: indie_street_id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: place_link
+                  type: VARCHAR(255)
+              - column:
+                  name: youtube_channel_link
+                  type: VARCHAR(255)
+            tableName: stage
+
