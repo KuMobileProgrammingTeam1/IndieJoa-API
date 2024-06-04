@@ -1,13 +1,11 @@
 package org.example.indiejoaapi.artist.controller
 
 import io.swagger.v3.oas.annotations.Operation
+import org.example.indiejoaapi.artist.UpdateArtistRequestBody
 import org.example.indiejoaapi.artist.entity.Artist
 import org.example.indiejoaapi.artist.service.ArtistService
 import org.springframework.data.domain.Page
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class ArtistController(
@@ -26,5 +24,23 @@ class ArtistController(
         @RequestParam(required = false, defaultValue = "10") size: Int
     ): Page<Artist> {
         return artistService.getArtists(page, size)
+    }
+
+    @Operation(summary = "아티스트 정보 업데이트", description = "아티스트 정보를 업데이트합니다.")
+    @PostMapping("/artist")
+    fun updateArtist(
+        @RequestBody body: UpdateArtistRequestBody
+    ) {
+        artistService.updateArtist(
+            body.artistId,
+            body.name,
+            body.nameEn,
+            body.nameJp,
+            body.isSolo,
+            body.imageUrl,
+            body.youtubeChannelLink,
+            body.twitterLink,
+            body.youtubeVideoLink
+        )
     }
 }
