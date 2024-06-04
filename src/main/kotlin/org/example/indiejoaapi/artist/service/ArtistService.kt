@@ -137,4 +137,30 @@ class ArtistService(
     fun getArtists(page: Int, size: Int): Page<Artist> {
         return artistRepository.findAll(PageRequest.of(page, size))
     }
+
+    fun updateArtist(
+        artistId: Long,
+        name: String,
+        nameEn: String,
+        nameJp: String,
+        solo: Boolean,
+        imageUrl: String,
+        youtubeChannelLink: String,
+        twitterLink: String,
+        youtubeVideoLink: String
+    ) {
+        val artist = artistRepository.findById(artistId)
+            .orElseThrow { IllegalArgumentException("Artist not found") }
+
+        artist.name = name
+        artist.nameEn = nameEn
+        artist.nameJp = nameJp
+        artist.isSolo = solo
+        artist.imageUrl = imageUrl
+        artist.youtubeChannelLink = youtubeChannelLink
+        artist.twitterLink = twitterLink
+        artist.youtubeVideoLink = youtubeVideoLink
+
+        artistRepository.save(artist)
+    }
 }

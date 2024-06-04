@@ -16,4 +16,5 @@ class Artist(
     var imageUrl: String,
     var youtubeChannelLink: String,
     var twitterLink: String,
+    var youtubeVideoLink: String = "",
 )
