@@ -32,7 +32,7 @@ class ArtistController(
         @RequestBody body: UpdateArtistRequestBody
     ) {
         artistService.updateArtist(
-            body.artistId,
+            body.id,
             body.name,
             body.nameEn,
             body.nameJp,
