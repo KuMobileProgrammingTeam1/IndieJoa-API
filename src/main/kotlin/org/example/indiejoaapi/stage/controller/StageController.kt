@@ -2,6 +2,7 @@ package org.example.indiejoaapi.stage.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import org.example.indiejoaapi.stage.service.StageService
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -17,7 +18,7 @@ class StageController(
     }
 
     @Operation(summary = "공연장 조회", description = "공연장을 조회합니다.")
-    @PostMapping("/stage")
+    @GetMapping("/stages")
     fun getStages(
         @RequestParam(required = false, defaultValue = "0") page: Int,
         @RequestParam(required = false, defaultValue = "10") size: Int
