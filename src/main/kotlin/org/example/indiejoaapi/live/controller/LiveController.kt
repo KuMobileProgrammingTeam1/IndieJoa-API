@@ -1,7 +1,9 @@
 package org.example.indiejoaapi.live.controller
 
 import io.swagger.v3.oas.annotations.Operation
+import org.example.indiejoaapi.live.entity.Live
 import org.example.indiejoaapi.live.service.LiveService
+import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -22,8 +24,8 @@ class LiveController(
     fun getLives(
         @RequestParam(required = false, defaultValue = "0") page: Int,
         @RequestParam(required = false, defaultValue = "10") size: Int
-    ) {
-        liveService.getLives(page, size)
+    ): Page<Live> {
+        return liveService.getLives(page, size)
     }
 
 

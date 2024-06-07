@@ -1,7 +1,9 @@
 package org.example.indiejoaapi.stage.controller
 
 import io.swagger.v3.oas.annotations.Operation
+import org.example.indiejoaapi.stage.entity.Stage
 import org.example.indiejoaapi.stage.service.StageService
+import org.springframework.data.domain.Page
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -22,7 +24,7 @@ class StageController(
     fun getStages(
         @RequestParam(required = false, defaultValue = "0") page: Int,
         @RequestParam(required = false, defaultValue = "10") size: Int
-    ) {
-        stageService.getStages(page, size)
+    ): Page<Stage> {
+        return stageService.getStages(page, size)
     }
 }
