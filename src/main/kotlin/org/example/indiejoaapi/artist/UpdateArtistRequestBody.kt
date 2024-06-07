@@ -1,7 +1,7 @@
 package org.example.indiejoaapi.artist
 
 data class UpdateArtistRequestBody(
-    val artistId: Long,
+    val id: Long,
     val name: String,
     val nameEn: String,
     val nameJp: String,
