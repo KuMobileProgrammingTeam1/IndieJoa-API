@@ -55,12 +55,22 @@ class LiveService(
                 else 0L
             val posterUrl = (liveInfo["poster"] as Map<*, *>?)?.let { it["formats"] as Map<*, *>? }
                 ?.let { it["thumbnail"] as Map<*, *>? }
-                ?.let { "https://indistreet.com/_next/image?url=https://indistreet-api.roto.codes${it["url"] as String}?w=2048&q=100" }
+                ?.let { "https://indistreet.com/_next/image?url=https://indistreet-api.roto.codes${it["url"] as String}&w=2048&q=100" }
                 ?: ""
             val purchaseTicketLink = liveInfo["purchaseTicketLink"] as String? ?: ""
 
 
-            val live = liveRepository.findByIndieStreetId(indieStreetId) ?: Live(
+            val live = liveRepository.findByIndieStreetId(indieStreetId)?.let {
+                it.title = title
+                it.startDate = startDate
+                it.endDate = endDate
+                it.description = description
+                it.priceInfo = priceInfo
+                it.stageId = indieStreetStageId
+                it.posterUrl = posterUrl
+                it.purchaseTicketLink = purchaseTicketLink
+                it
+            } ?: Live(
                 id = 0,
                 indieStreetId = indieStreetId,
                 title = title,
