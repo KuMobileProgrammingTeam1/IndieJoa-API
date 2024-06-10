@@ -51,12 +51,21 @@ class ArtistService(
             val profileImage =
                 (musician["profileImage"] as Map<*, *>?)?.let { it["formats"] as Map<*, *>? }
                     ?.let { it["thumbnail"] as Map<*, *>? }
-                    ?.let { "https://indistreet.com/_next/image?url=https://indistreet-api.roto.codes${it["url"] as String}?w=2048&q=100" }
+                    ?.let { "https://indistreet.com/_next/image?url=https://indistreet-api.roto.codes${it["url"] as String}&w=2048&q=100" }
                     ?: ""
             val youtubeChannelLink = musician["youtubeChannelLink"] as String?
             val twitterLink = musician["twitterLink"] as String?
 
-            val artist = artistRepository.findByIndieStreetId(indieStreetId) ?: Artist(
+            val artist = artistRepository.findByIndieStreetId(indieStreetId)?.let {
+                it.name = name
+                it.nameEn = nameEn
+                it.nameJp = nameJp
+                it.isSolo = isSolo
+                it.youtubeChannelLink = youtubeChannelLink ?: ""
+                it.twitterLink = twitterLink ?: ""
+                it.imageUrl = profileImage
+                it
+            } ?: Artist(
                 id = 0,
                 indieStreetId = indieStreetId,
                 name = name,
