@@ -28,5 +28,13 @@ class LiveController(
         return liveService.getLives(page, size)
     }
 
+    @Operation(summary = "공연정보 상세 조회", description = "공연정보를 상세 조회합니다.")
+    @GetMapping("/live")
+    fun getLive(
+        @RequestParam id: Long
+    ): Live {
+        return liveService.getLive(id)
+    }
+
 
 }
