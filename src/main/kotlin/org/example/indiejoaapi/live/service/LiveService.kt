@@ -308,4 +308,9 @@ class LiveService(
     fun getLives(page: Int, size: Int): Page<Live> {
         return liveRepository.findAll(PageRequest.of(page, size))
     }
+
+    fun getLive(id: Long): Live {
+        return liveRepository.findById(id)
+            .orElseThrow { IllegalArgumentException("해당 공연 정보가 없습니다.") }
+    }
 }
