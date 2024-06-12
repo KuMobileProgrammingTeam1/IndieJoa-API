@@ -21,9 +21,10 @@ class ArtistController(
     @GetMapping("/artists")
     fun getArtists(
         @RequestParam(required = false, defaultValue = "0") page: Int,
-        @RequestParam(required = false, defaultValue = "10") size: Int
+        @RequestParam(required = false, defaultValue = "10") size: Int,
+        @RequestParam(required = false, defaultValue = "") name: String
     ): Page<Artist> {
-        return artistService.getArtists(page, size)
+        return artistService.getArtists(page, size, name)
     }
 
     @Operation(summary = "아티스트 정보 업데이트", description = "아티스트 정보를 업데이트합니다.")

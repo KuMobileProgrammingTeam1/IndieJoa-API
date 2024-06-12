@@ -309,8 +309,8 @@ class LiveService(
             .build()
     }
 
-    fun getLives(page: Int, size: Int): Page<Live> {
-        return liveRepository.findAll(PageRequest.of(page, size))
+    fun getLives(page: Int, size: Int, title: String): Page<Live> {
+        return liveRepository.findByTitleContains(title, PageRequest.of(page, size))
     }
 
     fun getLive(id: Long): Live {
