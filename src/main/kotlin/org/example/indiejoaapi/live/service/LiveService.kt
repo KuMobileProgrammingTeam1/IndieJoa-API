@@ -53,7 +53,8 @@ class LiveService(
                 if (liveInfo["stage"] != null)
                     ((liveInfo["stage"] as Map<*, *>)["id"] as String? ?: "0").toLong()
                 else 0L
-            val posterUrl = (liveInfo["posters"] as Map<*, *>?)?.let { it["formats"] as Map<*, *>? }
+            val posterUrl = (liveInfo["posters"] as List<*>?)?.let { it[0] as Map<*, *>? }
+                ?.let { it["formats"] as Map<*, *>? }
                 ?.let { it["thumbnail"] as Map<*, *>? }
                 ?.let { "https://indistreet.com/_next/image?url=https://indistreet-api.roto.codes${it["url"] as String}&w=2048&q=100" }
                 ?: ""
