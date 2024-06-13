@@ -314,13 +314,10 @@ class LiveService(
             title,
             PageRequest.of(page, size)
         )
-        else liveRepository.findByTitleContains(
+        else liveRepository.findByTitleContainsOrderByStartDateAsc(
             title,
             PageRequest.of(page, size)
         )
-
-
-        return liveRepository.findByTitleContains(title, PageRequest.of(page, size))
     }
 
     fun getLive(id: Long): Live {
