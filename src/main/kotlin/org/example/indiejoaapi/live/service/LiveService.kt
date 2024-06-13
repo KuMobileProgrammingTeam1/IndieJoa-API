@@ -309,7 +309,17 @@ class LiveService(
             .build()
     }
 
-    fun getLives(page: Int, size: Int, title: String): Page<Live> {
+    fun getLives(page: Int, size: Int, title: String, sort: Int): Page<Live> {
+        return if (sort == 1) liveRepository.findByTitleContainsOrderByStartDateDesc(
+            title,
+            PageRequest.of(page, size)
+        )
+        else liveRepository.findByTitleContains(
+            title,
+            PageRequest.of(page, size)
+        )
+
+
         return liveRepository.findByTitleContains(title, PageRequest.of(page, size))
     }
 
