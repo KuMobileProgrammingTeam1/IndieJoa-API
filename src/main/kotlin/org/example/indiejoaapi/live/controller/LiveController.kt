@@ -24,9 +24,10 @@ class LiveController(
     fun getLives(
         @RequestParam(required = false, defaultValue = "0") page: Int,
         @RequestParam(required = false, defaultValue = "10") size: Int,
-        @RequestParam(required = false, defaultValue = "") title: String
+        @RequestParam(required = false, defaultValue = "") title: String,
+        @RequestParam(required = false, defaultValue = "0") sort: Int
     ): Page<Live> {
-        return liveService.getLives(page, size, title)
+        return liveService.getLives(page, size, title, sort)
     }
 
     @Operation(summary = "공연정보 상세 조회", description = "공연정보를 상세 조회합니다.")
