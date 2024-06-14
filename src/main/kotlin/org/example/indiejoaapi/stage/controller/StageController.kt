@@ -31,8 +31,8 @@ class StageController(
     @Operation(summary = "공연장 상세 조회", description = "공연장을 상세 조회합니다.")
     @GetMapping("/stage")
     fun getStage(
-        @RequestParam id: Long
+        @RequestParam indieStreetId: Long
     ): Stage {
-        return stageService.getStage(id)
+        return stageService.getStage(indieStreetId)
     }
 }

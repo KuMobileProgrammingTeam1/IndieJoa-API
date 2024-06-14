@@ -135,9 +135,9 @@ class StageService(
             ).build()
     }
 
-    fun getStage(stageId: Long): Stage {
-        return stageRepository.findById(stageId)
-            .orElseThrow { IllegalArgumentException("Stage not found") }
+    fun getStage(indieStreetId: Long): Stage {
+        return stageRepository.findByIndieStreetId(indieStreetId)
+            ?: throw IllegalArgumentException("Stage not found")
     }
 
     fun getStages(page: Int, size: Int): Page<Stage> {
