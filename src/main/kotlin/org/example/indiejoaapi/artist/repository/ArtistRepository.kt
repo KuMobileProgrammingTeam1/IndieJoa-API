@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface ArtistRepository : JpaRepository<Artist, Long> {
     fun findByIndieStreetId(indieStreetId: Long): Artist?
-    fun findByNameContains(name: String, pageRequest: PageRequest): Page<Artist>
+    fun findByNameContainsOrderById(name: String, pageRequest: PageRequest): Page<Artist>
 }

@@ -144,7 +144,7 @@ class ArtistService(
     }
 
     fun getArtists(page: Int, size: Int, name: String): Page<Artist> {
-        return artistRepository.findByNameContains(name, PageRequest.of(page, size))
+        return artistRepository.findByNameContainsOrderById(name, PageRequest.of(page, size))
     }
 
     fun updateArtist(
